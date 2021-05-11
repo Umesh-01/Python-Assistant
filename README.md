@@ -63,3 +63,7 @@ Python Assistant (PA) is a voice command based assistant service written in Pyth
 
 * Searching anything on the internet [e.g. 'search Python', 'search uttar pradesh']
 
+## Contributing
+PRs are welcome ☺️
+
+Try to follow PEP 8 guidelines and add comments!!
