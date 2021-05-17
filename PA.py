@@ -664,3 +664,22 @@ if _name_ == '_main_':
                 fun_talk(data[0].summary)
             except Exception as e:
                 fun_talk('Sorry, I am unable to find the answer for your query.')
+                     
+        elif 'news' in query or 'news headlines' in query:
+            url = "https://news.google.com/news/rss"
+            client = urlopen(url)
+            xml_page = client.read()
+            client.close()
+            page = bs4.BeautifulSoup(xml_page, 'xml')
+            news_list = page.findAll("item")
+            fun_talk("Today's top headlines are--")
+            try:
+                for news in news_list:
+                    print(news.title.text)
+                    # print(news.pubDate.text)
+                    fun_talk(f"{news.title.text}")
+                    # fun_talk(f"{news.pubDate.text}")
+                    print()
+
+            except Exception as e:
+                pass
