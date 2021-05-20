@@ -1,5 +1,4 @@
-# About
-
+# 🤖 About  
 
 Since, voice based personal assistants have acquired a great deal of prominence in this time of smart homes and automated gadgets. These personal assistants can be handily designed to perform a significant number of our normal tasks by basically providing voice commands. 
 
