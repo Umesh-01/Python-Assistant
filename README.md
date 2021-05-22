@@ -1,4 +1,5 @@
 # Python Assistant (PA)
+
 Python Assistant (PA) is a voice command based assistant service written in Python 3.9+. It can recognize human speech or voice, talk to user and execute basic commands.
 
 ## Features
@@ -63,7 +64,29 @@ Python Assistant (PA) is a voice command based assistant service written in Pyth
 
 * Searching anything on the internet [e.g. 'search Python', 'search uttar pradesh']
 
-## Contributing
+## Requirements
+
+Python version 3.9+ or higher
+
+Either you can use CLI or you can use IDE (like PyCharm)
+
+## Installation
+
+Press the Fork button, to save a copy of this repository on your GitHub account
+
+OR 
+
+Download this repository by clicking on Download ZIP inside the Code button 
+
+OR
+
+Clone this repository by typing `git clone https://github.com/Umesh-01/Python-Assistant.git` command in git bash  
+
+
+## Contributing 
+
 PRs are welcome 🙂
 
-Try to follow PEP 8 guidelines and add comments!!
+If you find any issue just put it in the issue section
+
+Try to follow PEP 8 guidelines and add comments!! 
