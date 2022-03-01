@@ -11,7 +11,7 @@ from email.message import EmailMessage
 import pywhatkit                                   # pip install pywhatkit
 import MyAlarm                                     # user-defined
 import pyjokes                                     # pip install pyjokes
-from speedtest import Speedtest                    # pip install speedtest-cli
+import speedtest                  # pip install speedtest-cli
 from pywikihow import search_wikihow               # pip install pywikihow
 import pyautogui                                   # pip install pyAutoGUI
 import poetpy                                      # pip install poetpy
@@ -71,7 +71,7 @@ def get_command():
         return query
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     
     wish_user()
 
@@ -526,12 +526,15 @@ if _name_ == '_main_':
                 fun_talk("Point noted successfully.")
 
         elif 'show me the notes' in query or 'read notes' in query:
-            fun_talk("Reading Notes")
-            file = open("Notes.txt", "r")
-            data_note = file.readlines()
-            # for points in data_note:
-            print(data_note)
-            fun_talk(data_note)
+            try:
+                fun_talk("Reading Notes")
+                file = open("Notes.txt", "r")
+                data_note = file.readlines()
+                # for points in data_note:
+                print(data_note)
+                fun_talk(data_note)
+            except:
+                fun_talk("Notes not found")
 
         elif 'distance' in query:
             geocoder = Nominatim(user_agent="Singh")
