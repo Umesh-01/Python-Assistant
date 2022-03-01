@@ -120,8 +120,7 @@ if _name_ == '_main_':
                          "Programs\\Eclipse\\Eclipse IDE for Java Developers - 2020-06")
 
         elif 'open notepad' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\"
-                         "Start Menu\\Programs\\Accessories\\Notepad")
+            os.startfile("C:\\Windows\\notepad.exe")
 
         elif 'open pycharm' in query:
             os.startfile("C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.1.1\\bin\\pycharm64.exe")
