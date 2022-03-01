@@ -1,5 +1,6 @@
 import pyttsx3                                     # pip install pyttsx3
 import datetime
+import pywhatkit
 import speech_recognition as sr                    # pip install SpeechRecognition
 # import pyaudio                                   # pip install pipwin and then pipwin install pyaudio
 import wikipedia                                   # pip install wikipedia
@@ -8,7 +9,7 @@ import os
 import sys
 import smtplib
 from email.message import EmailMessage
-import pywhatkit                                   # pip install pywhatkit
+#import pywhatkit                                   # pip install pywhatkit
 import MyAlarm                                     # user-defined
 import pyjokes                                     # pip install pyjokes
 from speedtest import Speedtest                    # pip install speedtest-cli
@@ -71,7 +72,7 @@ def get_command():
         return query
 
 
-if _name_ == '_main_':
+if __name__ == "__main__":
     
     wish_user()
 
@@ -214,6 +215,20 @@ if _name_ == '_main_':
 
 
             get_mail_info()
+
+
+        elif 'whatsapp' in query:
+            fun_talk('Please enter the group_name')
+            group_name = input('Please enter group_name')
+            fun_talk('Please enter the message :')
+            msg = input('Please enter the message :')
+            fun_talk('Please enter the time')
+            hr = int(input('Please enter the time in hour(24) :'))
+            min = int(input('Please enter the time in minutes :'))
+            txt = 'Sending message'
+            fun_talk(txt)
+            pywhatkit.sendwhatmsg_to_group(group_name, msg, hr, min)
+
 
         elif 'play' in query:
             cmd_info = query.replace('play', '')
