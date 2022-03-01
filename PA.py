@@ -216,7 +216,7 @@ if __name__ == "__main__":
 
             get_mail_info()
 
-
+    #send message to group
         elif 'whatsapp' in query:
             fun_talk('Please enter the group_name')
             group_name = input('Please enter group_name')
