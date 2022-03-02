@@ -1,7 +1,8 @@
-import pyttsx3                                     # pip install pyttsx3
+#all imports are listed here
+import pyttsx3      
+from PIL import Image                               # pip install pyttsx3
 import datetime
-import speech_recognition as sr                    # pip install SpeechRecognition
-# import pyaudio                                   # pip install pipwin and then pipwin install pyaudio
+import speech_recognition as sr                    # pip install SpeechRecognition                                # pip install pipwin and then pipwin install pyaudio
 import wikipedia                                   # pip install wikipedia
 import webbrowser
 import os
@@ -25,9 +26,17 @@ from quote import quote                            # pip install quote
 import winshell as winshell                        # pip install winshell
 from geopy.geocoders import Nominatim              # pip install geopy  and pip install geocoder
 from geopy import distance
+# --------------------
 
 engine = pyttsx3.init()
 
+def img_requests(txt):
+    response=requests.get("https://source.unsplash.com/random?{0}".format(txt))
+    file=open('sample_image.jpg','wb')
+    file.write(response.content)
+    img=Image.open(r"sample_image.jpg")
+    img.show()
+    file.close
 
 def fun_talk(audio):
     engine.say(audio)
@@ -71,7 +80,7 @@ def get_command():
         return query
 
 
-if _name_ == '_main_':
+if '__name__'=='__main__':
     
     wish_user()
 
@@ -86,7 +95,12 @@ if _name_ == '_main_':
             fun_talk("According to Wikipedia")
             print(results)
             fun_talk(results)
-
+        elif 'images' in query:
+            fun_talk("Please provide the desired keywords to search related Images")
+            text=get_command()
+            fun_talk("Providing Images of"+text)
+            img_requests(text)
+        
         elif 'open youtube' in query:
             webbrowser.open("www.youtube.com")
 
@@ -157,7 +171,7 @@ if _name_ == '_main_':
             fun_talk("He was my classmate, too intelligent guy. We both are best friends.")
 
         elif 'siri' in query:
-            fun_talk("Siri, She's a competing virtual assistant on   a competitor's phone. "
+            fun_talk("Siri, She's a competing virtual assistant on  a competitor's phone. "
                      "Not that I'm competitive or anything.")
 
         elif 'cortana' in query:
