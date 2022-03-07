@@ -123,7 +123,7 @@ if __name__ == '__main__':
                          "Programs\\Visual Studio Code\\Visual Studio Code")
 
         elif 'open eclipse' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
                          "Programs\\Eclipse\\Eclipse IDE for Java Developers - 2020-06")
 
         elif 'open notepad' in query:
@@ -133,7 +133,7 @@ if __name__ == '__main__':
             os.startfile("C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.1.1\\bin\\pycharm64.exe")
 
         elif 'open code blocks' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
                          "Programs\\CodeBlocks\\CodeBlocks")
 
         elif 'open mozilla firefox' in query:
@@ -143,7 +143,7 @@ if __name__ == '__main__':
             os.startfile("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
 
         elif 'open whatsapp' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Local\\WhatsApp\\WhatsApp.exe")
+            os.startfile(home_user_dir + "\\AppData\\Local\\WhatsApp\\WhatsApp.exe")
 
         elif 'open v l c' in query:
             os.startfile("C:\\Program Files\\VideoLAN\\VLC\\vlc.exe")
