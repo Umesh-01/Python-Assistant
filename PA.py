@@ -63,21 +63,28 @@ def get_command():
             print("Recognizing...")
             query = rec.recognize_google(audio, language='en-in')
             print(f"User said: {query}\n")
+        except sr.UnknownValueError:
+            print("Google Speech Recognition could not understand audio")
+            return "None"
+        except sr.RequestError as e:
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            return "None"
 
         except Exception as e:
-            # print(e)
+            print(e)
             print("Say that again please...")
             return "None"
         return query
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     
     wish_user()
 
     while True:
         
         query = get_command().lower()
+        home_user_dir = os.path.expanduser("~")
 
         if 'wikipedia' in query:
             fun_talk('Searching Wikipedia')
@@ -112,7 +119,7 @@ if _name_ == '_main_':
             fun_talk(f"The date is {strDate}")
 
         elif 'open visual studio code' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
                          "Programs\\Visual Studio Code\\Visual Studio Code")
 
         elif 'open eclipse' in query:
@@ -138,7 +145,7 @@ if _name_ == '_main_':
         elif 'open whatsapp' in query:
             os.startfile("C:\\Users\\91954\\AppData\\Local\\WhatsApp\\WhatsApp.exe")
 
-        elif 'open vlc' in query:
+        elif 'open v l c' in query:
             os.startfile("C:\\Program Files\\VideoLAN\\VLC\\vlc.exe")
 
         elif 'who are you' in query:
