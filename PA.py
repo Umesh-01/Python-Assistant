@@ -2,15 +2,21 @@ import pyttsx3                                     # pip install pyttsx3
 import datetime
 import pywhatkit
 import speech_recognition as sr                    # pip install SpeechRecognition
-# import pyaudio                                   # pip install pipwin and then pipwin install pyaudio
+import pyaudio                                   # pip install pipwin and then pipwin install pyaudio
 import wikipedia                                   # pip install wikipedia
 import webbrowser
 import os
 import sys
 import smtplib
 from email.message import EmailMessage
+
 #import pywhatkit                                   # pip install pywhatkit
 import MyAlarm                                     # user-defined
+
+import pywhatkit                                   # pip install pywhatkit
+import MyAlarm      
+import ecapture as ec                
+
 import pyjokes                                     # pip install pyjokes
 from speedtest import Speedtest                    # pip install speedtest-cli
 from pywikihow import search_wikihow               # pip install pywikihow
@@ -29,30 +35,23 @@ from geopy import distance
 
 engine = pyttsx3.init()
 
-
 def fun_talk(audio):
     engine.say(audio)
     engine.runAndWait()
 
-
 def wish_user():
-   
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour < 12:
         fun_talk("Good Morning !")
-
     elif hour >= 12 and hour < 18:
         fun_talk("Good Afternoon !")
-
     else:
         fun_talk("Good Evening !")
-
+        
     fun_talk("I am P.A. (Python Assistant). Tell me how may I help you.")
 
 
 def get_command():
-    
-
     rec = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
@@ -72,12 +71,12 @@ def get_command():
         return query
 
 
+
 if __name__ == "__main__":
     
-    wish_user()
 
-    while True:
-        
+    wish_user()
+    while True: 
         query = get_command().lower()
 
         if 'wikipedia' in query:
@@ -258,6 +257,8 @@ if __name__ == "__main__":
         elif 'close firefox' in query:
             os.system("TASKKILL /F /IM firefox.exe")
             # subprocess.call(["taskkill", "/F", "/IM", "firefox.exe"])
+        elif "camera" in command or "take a photo" in command:
+            ec.capture(0,"robo camera","img.jpg")
 
         elif 'close visual studio code' in query:
             os.system("TASKKILL /F /IM Code.exe")
