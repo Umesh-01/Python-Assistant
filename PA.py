@@ -234,7 +234,8 @@ if __name__ == '_main_':
         elif 'close firefox' in query:
             os.system("TASKKILL /F /IM firefox.exe")
             # subprocess.call(["taskkill", "/F", "/IM", "firefox.exe"])
-        elif "camera" in command or "take a photo" in command:
+
+        elif "camera" or "take a photo" in query:
             ec.capture(0,"robo camera","img.jpg")
 
         elif 'close visual studio code' in query:
@@ -263,6 +264,11 @@ if __name__ == '_main_':
 
         elif 'close spotify' in query:
             os.system("TASKKILL /F /IM Spotify.exe")
+
+        elif 'price of' in query:
+            query = query.replace('price of', '')
+            query = "https://www.amazon.in/s?k=" + query[-1] #indexing since I only want the keyword
+            webbrowser.open(query)
 
         elif 'poem' in query:
             fun_talk('Poem of which author you want to listen?')
@@ -660,7 +666,7 @@ if __name__ == '_main_':
                      
         elif 'news' in query or 'news headlines' in query:
             url = "https://news.google.com/news/rss"
-            client = urlopen(url)
+            client = webbrowser(url)
             xml_page = client.read()
             client.close()
             page = bs4.BeautifulSoup(xml_page, 'xml')
