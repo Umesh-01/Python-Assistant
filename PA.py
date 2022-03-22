@@ -25,6 +25,9 @@ from quote import quote                            # pip install quote
 import winshell as winshell                        # pip install winshell
 from geopy.geocoders import Nominatim              # pip install geopy  and pip install geocoder
 from geopy import distance
+import cv2 # pip install opencv-python
+import pytesseract #open the url:- https://medium.com/@marioruizgonzalez.mx/how-install-tesseract-orc-and-pytesseract-on-windows-68f011ad8b9b#:~:text=How%20install%20Tesseract%20%E2%80%94%20ORC%20and%20Pytesseract%20on,in%20your%20path%3F%20...%204%20Functionality%20test.%20?msclkid=b450aef2a9bc11eca0586aca2ea2f8fa
+import Book_Reader
 
 engine = pyttsx3.init()
 
@@ -122,7 +125,8 @@ if _name_ == '_main_':
         elif 'open notepad' in query:
             os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\"
                          "Start Menu\\Programs\\Accessories\\Notepad")
-
+        elif 'read book' in query:
+            Book_Reader.book_read()
         elif 'open pycharm' in query:
             os.startfile("C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.1.1\\bin\\pycharm64.exe")
 
