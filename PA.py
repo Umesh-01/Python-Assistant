@@ -29,6 +29,9 @@ from geopy import distance
 import cv2
 import psutil
 import numpy as np
+import turtle                                      # pip install turtle
+import random                                      # pip install random
+import snake_game                                  # user-defined
 
 engine = pyttsx3.init()
 
@@ -102,8 +105,8 @@ def screen_record():                                                            
     out.release()
 
 
+if __name__ == '__main__':
 
-if __name__ == '_main_':
     wish_user()
     while True: 
         query = get_command().lower()
@@ -142,22 +145,22 @@ if __name__ == '_main_':
 
         elif 'open visual studio code' in query:
             os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
-                         "Programs\\Visual Studio Code\\Visual Studio Code")
+                            "Programs\\Visual Studio Code\\Visual Studio Code")
 
         elif 'open eclipse' in query:
             os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
-                         "Programs\\Eclipse\\Eclipse IDE for Java Developers - 2020-06")
+                            "Programs\\Eclipse\\Eclipse IDE for Java Developers - 2020-06")
 
         elif 'open notepad' in query:
             os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\"
-                         "Start Menu\\Programs\\Accessories\\Notepad")
+                            "Start Menu\\Programs\\Accessories\\Notepad")
 
         elif 'open pycharm' in query:
             os.startfile("C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.1.1\\bin\\pycharm64.exe")
 
         elif 'open code blocks' in query:
             os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
-                         "Programs\\CodeBlocks\\CodeBlocks")
+                            "Programs\\CodeBlocks\\CodeBlocks")
 
         elif 'open mozilla firefox' in query:
             os.startfile("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
@@ -173,21 +176,21 @@ if __name__ == '_main_':
 
         elif 'who are you' in query:
             fun_talk("I am P.A. (Python Assistant), developed by Rishabh Ranjan, Himanshi, "
-                     "Rachit Dwivedi and Umesh Singh as a project in their college.")
+                        "Rachit Dwivedi and Umesh Singh as a project in their college.")
 
         elif 'what you want to do' in query:
             fun_talk("I want to help people to do certain tasks on their single voice commands.")
 
         elif 'alexa' in query:
             fun_talk("I don't know Alexa, but I've heard of Alexa. If you have Alexa, "
-                     "I may have just triggered Alexa. If so, sorry Alexa.")
+                        "I may have just triggered Alexa. If so, sorry Alexa.")
 
         elif 'google assistant' in query:
             fun_talk("He was my classmate, too intelligent guy. We both are best friends.")
 
         elif 'siri' in query:
             fun_talk("Siri, She's a competing virtual assistant on   a competitor's phone. "
-                     "Not that I'm competitive or anything.")
+                        "Not that I'm competitive or anything.")
 
         elif 'cortana' in query:
             fun_talk("I thought you'd never ask. So I've never thought about it.")
@@ -349,13 +352,13 @@ if __name__ == '_main_':
                 val_cur = float(get_command())
                 # print(val_cur)
                 print(cur.convert(src_cur, dest_cur, val_cur))
-                     
+                        
             except Exception as e:
                 print("Couldn't get what you have said, Can you say it again??")
 
         elif 'covid-19' in query or 'corona' in query:
             fun_talk('For which region u want to see the Covid-19 cases. '
-                     'Overall cases in the world or any specific country?')
+                        'Overall cases in the world or any specific country?')
             c_query = get_command()
             if 'overall' in c_query or 'over all' in c_query or 'world' in c_query or 'total' in c_query or 'worldwide' in c_query:
                 def world_cases():
@@ -695,7 +698,7 @@ if __name__ == '_main_':
                 fun_talk(data[0].summary)
             except Exception as e:
                 fun_talk('Sorry, I am unable to find the answer for your query.')
-                     
+                        
         elif 'news' in query or 'news headlines' in query:
             url = "https://news.google.com/news/rss"
             client = urlopen(url)
@@ -714,7 +717,15 @@ if __name__ == '_main_':
 
             except Exception as e:
                 pass
-
         elif 'screen recording' in query:
           fun_talk('press q to stop and save recording')                      ## screen recorrder functionality
           screen_record()
+        
+        elif 'snake game' in query:
+            try:
+                print("Starting the game!")
+                fun_talk("Starting the game!")
+                snake_game.game()
+            except Exception as e:
+                pass
+
