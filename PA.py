@@ -26,6 +26,9 @@ from quote import quote                            # pip install quote
 import winshell as winshell                        # pip install winshell
 from geopy.geocoders import Nominatim              # pip install geopy  and pip install geocoder
 from geopy import distance
+import turtle                                      # pip install turtle
+import random                                      # pip install random
+import snake_game                                  # user-defined
 
 engine = pyttsx3.init()
 
@@ -72,7 +75,6 @@ def get_command():
 
 
 if __name__ == '__main__':
-    
 
     wish_user()
     while True: 
@@ -143,21 +145,21 @@ if __name__ == '__main__':
 
         elif 'who are you' in query:
             fun_talk("I am P.A. (Python Assistant), developed by Rishabh Ranjan, Himanshi, "
-                     "Rachit Dwivedi and Umesh Singh as a project in their college.")
+                        "Rachit Dwivedi and Umesh Singh as a project in their college.")
 
         elif 'what you want to do' in query:
             fun_talk("I want to help people to do certain tasks on their single voice commands.")
 
         elif 'alexa' in query:
             fun_talk("I don't know Alexa, but I've heard of Alexa. If you have Alexa, "
-                     "I may have just triggered Alexa. If so, sorry Alexa.")
+                        "I may have just triggered Alexa. If so, sorry Alexa.")
 
         elif 'google assistant' in query:
             fun_talk("He was my classmate, too intelligent guy. We both are best friends.")
 
         elif 'siri' in query:
             fun_talk("Siri, She's a competing virtual assistant on   a competitor's phone. "
-                     "Not that I'm competitive or anything.")
+                        "Not that I'm competitive or anything.")
 
         elif 'cortana' in query:
             fun_talk("I thought you'd never ask. So I've never thought about it.")
@@ -319,13 +321,13 @@ if __name__ == '__main__':
                 val_cur = float(get_command())
                 # print(val_cur)
                 print(cur.convert(src_cur, dest_cur, val_cur))
-                     
+                        
             except Exception as e:
                 print("Couldn't get what you have said, Can you say it again??")
 
         elif 'covid-19' in query or 'corona' in query:
             fun_talk('For which region u want to see the Covid-19 cases. '
-                     'Overall cases in the world or any specific country?')
+                        'Overall cases in the world or any specific country?')
             c_query = get_command()
             if 'overall' in c_query or 'over all' in c_query or 'world' in c_query or 'total' in c_query or 'worldwide' in c_query:
                 def world_cases():
@@ -665,7 +667,7 @@ if __name__ == '__main__':
                 fun_talk(data[0].summary)
             except Exception as e:
                 fun_talk('Sorry, I am unable to find the answer for your query.')
-                     
+                        
         elif 'news' in query or 'news headlines' in query:
             url = "https://news.google.com/news/rss"
             client = urlopen(url)
@@ -682,5 +684,13 @@ if __name__ == '__main__':
                     # fun_talk(f"{news.pubDate.text}")
                     print()
 
+            except Exception as e:
+                pass
+        
+        elif 'snake game' in query:
+            try:
+                print("Starting the game!")
+                fun_talk("Starting the game!")
+                snake_game.game()
             except Exception as e:
                 pass
