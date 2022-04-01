@@ -412,55 +412,15 @@ if __name__ == '__main__':
 
         elif 'month' in query or 'month is going' in query:
             def tell_month():
-                localtime = time.asctime(time.localtime(time.time()))
-                m_onth = localtime[4:7]
-                if m_onth == "Jan":
-                    fun_talk("it's january")
-                if m_onth == "Feb":
-                    fun_talk("it's february")
-                if m_onth == "Mar":
-                    fun_talk("it's march")
-                if m_onth == "Apr":
-                    fun_talk("it's april")
-                if m_onth == "May":
-                    fun_talk("it's may")
-                if m_onth == "Jun":
-                    fun_talk("it's june")
-                if m_onth == "Jul":
-                    fun_talk("it's july")
-                if m_onth == "Aug":
-                    fun_talk("it's august")
-                if m_onth == "Sep":
-                    fun_talk("it's september")
-                if m_onth == "Oct":
-                    fun_talk("it's october")
-                if m_onth == "Nov":
-                    fun_talk("it's november")
-                if m_onth == "Dec":
-                    fun_talk("it's december")
-
+                month = datetime.datetime.now().strftime("%B")
+                fun_talk(month)
 
             tell_month()
 
         elif 'day' in query or 'day today' in query:
             def tell_day():
-                localtime = time.asctime(time.localtime(time.time()))
-                day = localtime[0:3]
-                if day == "Sun":
-                    fun_talk("it's sunday")
-                if day == "Mon":
-                    fun_talk("it's monday")
-                if day == "Tue":
-                    fun_talk("it's tuesday")
-                if day == "Wed":
-                    fun_talk("it's wednesday")
-                if day == "Thu":
-                    fun_talk("it's thursday")
-                if day == "Fri":
-                    fun_talk("it's friday")
-                if day == "Sat":
-                    fun_talk("it's saturday")
-
+                day = datetime.datetime.now().strftime("%A")
+                fun_talk(day)
 
             tell_day()
 
