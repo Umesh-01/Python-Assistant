@@ -1,7 +1,7 @@
 import pyttsx3                                     # pip install pyttsx3
 import datetime
 import speech_recognition as sr                    # pip install SpeechRecognition
-# import pyaudio                                   # pip install pipwin and then pipwin install pyaudio
+import pyaudio                                   # pip install pipwin and then pipwin install pyaudio
 import wikipedia                                   # pip install wikipedia
 import webbrowser
 import os
@@ -9,7 +9,8 @@ import sys
 import smtplib
 from email.message import EmailMessage
 import pywhatkit                                   # pip install pywhatkit
-import MyAlarm                                     # user-defined
+import MyAlarm      
+import ecapture as ec                
 import pyjokes                                     # pip install pyjokes
 from speedtest import Speedtest                    # pip install speedtest-cli
 from pywikihow import search_wikihow               # pip install pywikihow
@@ -25,36 +26,35 @@ from quote import quote                            # pip install quote
 import winshell as winshell                        # pip install winshell
 from geopy.geocoders import Nominatim              # pip install geopy  and pip install geocoder
 from geopy import distance
+
 import cv2 # pip install opencv-python
 import pytesseract #open the url:- https://medium.com/@marioruizgonzalez.mx/how-install-tesseract-orc-and-pytesseract-on-windows-68f011ad8b9b#:~:text=How%20install%20Tesseract%20%E2%80%94%20ORC%20and%20Pytesseract%20on,in%20your%20path%3F%20...%204%20Functionality%20test.%20?msclkid=b450aef2a9bc11eca0586aca2ea2f8fa
 import Book_Reader
 
-engine = pyttsx3.init()
+import turtle                                      # pip install turtle
+import random                                      # pip install random
+import snake_game                                  # user-defined
 
+
+engine = pyttsx3.init()
 
 def fun_talk(audio):
     engine.say(audio)
     engine.runAndWait()
 
-
 def wish_user():
-   
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour < 12:
         fun_talk("Good Morning !")
-
     elif hour >= 12 and hour < 18:
         fun_talk("Good Afternoon !")
-
     else:
         fun_talk("Good Evening !")
-
+        
     fun_talk("I am P.A. (Python Assistant). Tell me how may I help you.")
 
 
 def get_command():
-    
-
     rec = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
@@ -66,21 +66,26 @@ def get_command():
             print("Recognizing...")
             query = rec.recognize_google(audio, language='en-in')
             print(f"User said: {query}\n")
+        except sr.UnknownValueError:
+            print("Google Speech Recognition could not understand audio")
+            return "None"
+        except sr.RequestError as e:
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            return "None"
 
         except Exception as e:
-            # print(e)
+            print(e)
             print("Say that again please...")
             return "None"
         return query
 
 
-if _name_ == '_main_':
-    
-    wish_user()
+if __name__ == '__main__':
 
-    while True:
-        
+    wish_user()
+    while True: 
         query = get_command().lower()
+        home_user_dir = os.path.expanduser("~")
 
         if 'wikipedia' in query:
             fun_talk('Searching Wikipedia')
@@ -115,23 +120,25 @@ if _name_ == '_main_':
             fun_talk(f"The date is {strDate}")
 
         elif 'open visual studio code' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
                          "Programs\\Visual Studio Code\\Visual Studio Code")
 
         elif 'open eclipse' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
                          "Programs\\Eclipse\\Eclipse IDE for Java Developers - 2020-06")
 
         elif 'open notepad' in query:
+
             os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\"
                          "Start Menu\\Programs\\Accessories\\Notepad")
         elif 'read book' in query:
             Book_Reader.book_read()
+
         elif 'open pycharm' in query:
             os.startfile("C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.1.1\\bin\\pycharm64.exe")
 
         elif 'open code blocks' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
                          "Programs\\CodeBlocks\\CodeBlocks")
 
         elif 'open mozilla firefox' in query:
@@ -141,28 +148,28 @@ if _name_ == '_main_':
             os.startfile("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
 
         elif 'open whatsapp' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Local\\WhatsApp\\WhatsApp.exe")
+            os.startfile(home_user_dir + "\\AppData\\Local\\WhatsApp\\WhatsApp.exe")
 
-        elif 'open vlc' in query:
+        elif 'open v l c' in query:
             os.startfile("C:\\Program Files\\VideoLAN\\VLC\\vlc.exe")
 
         elif 'who are you' in query:
             fun_talk("I am P.A. (Python Assistant), developed by Rishabh Ranjan, Himanshi, "
-                     "Rachit Dwivedi and Umesh Singh as a project in their college.")
+                        "Rachit Dwivedi and Umesh Singh as a project in their college.")
 
         elif 'what you want to do' in query:
             fun_talk("I want to help people to do certain tasks on their single voice commands.")
 
         elif 'alexa' in query:
             fun_talk("I don't know Alexa, but I've heard of Alexa. If you have Alexa, "
-                     "I may have just triggered Alexa. If so, sorry Alexa.")
+                        "I may have just triggered Alexa. If so, sorry Alexa.")
 
         elif 'google assistant' in query:
             fun_talk("He was my classmate, too intelligent guy. We both are best friends.")
 
         elif 'siri' in query:
             fun_talk("Siri, She's a competing virtual assistant on   a competitor's phone. "
-                     "Not that I'm competitive or anything.")
+                        "Not that I'm competitive or anything.")
 
         elif 'cortana' in query:
             fun_talk("I thought you'd never ask. So I've never thought about it.")
@@ -248,6 +255,9 @@ if _name_ == '_main_':
             os.system("TASKKILL /F /IM firefox.exe")
             # subprocess.call(["taskkill", "/F", "/IM", "firefox.exe"])
 
+        elif "camera" or "take a photo" in query:
+            ec.capture(0,"robo camera","img.jpg")
+
         elif 'close visual studio code' in query:
             os.system("TASKKILL /F /IM Code.exe")
 
@@ -274,6 +284,11 @@ if _name_ == '_main_':
 
         elif 'close spotify' in query:
             os.system("TASKKILL /F /IM Spotify.exe")
+
+        elif 'price of' in query:
+            query = query.replace('price of', '')
+            query = "https://www.amazon.in/s?k=" + query[-1] #indexing since I only want the keyword
+            webbrowser.open(query)
 
         elif 'poem' in query:
             fun_talk('Poem of which author you want to listen?')
@@ -322,13 +337,13 @@ if _name_ == '_main_':
                 val_cur = float(get_command())
                 # print(val_cur)
                 print(cur.convert(src_cur, dest_cur, val_cur))
-                     
+                        
             except Exception as e:
                 print("Couldn't get what you have said, Can you say it again??")
 
         elif 'covid-19' in query or 'corona' in query:
             fun_talk('For which region u want to see the Covid-19 cases. '
-                     'Overall cases in the world or any specific country?')
+                        'Overall cases in the world or any specific country?')
             c_query = get_command()
             if 'overall' in c_query or 'over all' in c_query or 'world' in c_query or 'total' in c_query or 'worldwide' in c_query:
                 def world_cases():
@@ -668,10 +683,10 @@ if _name_ == '_main_':
                 fun_talk(data[0].summary)
             except Exception as e:
                 fun_talk('Sorry, I am unable to find the answer for your query.')
-                     
+                        
         elif 'news' in query or 'news headlines' in query:
             url = "https://news.google.com/news/rss"
-            client = urlopen(url)
+            client = webbrowser(url)
             xml_page = client.read()
             client.close()
             page = bs4.BeautifulSoup(xml_page, 'xml')
@@ -685,5 +700,13 @@ if _name_ == '_main_':
                     # fun_talk(f"{news.pubDate.text}")
                     print()
 
+            except Exception as e:
+                pass
+        
+        elif 'snake game' in query:
+            try:
+                print("Starting the game!")
+                fun_talk("Starting the game!")
+                snake_game.game()
             except Exception as e:
                 pass

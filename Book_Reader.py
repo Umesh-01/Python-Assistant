@@ -4,6 +4,7 @@ import speech_recognition as sr # pip install speechRecognition
 import pyttsx3 # pip install pyttsx3
 import time
 def speak(str):
+    engine = pyttsx3.init()
     engine.say(str)
     engine.runAndWait()
 def book_read():
@@ -14,7 +15,7 @@ def book_read():
     cap.set(3, frameWidth)
     cap.set(4, frameHeight)
     cap.set(10, 150)
-    engine = pyttsx3.init()
+
     while True:
         success, img = cap.read()
         cv2.imshow("Result", img)
@@ -24,5 +25,5 @@ def book_read():
             print(img1)
             print(pytesseract.image_to_string(img1)+"hello")
             speak(pytesseract.image_to_string(img1))
-
+book_read()
 
