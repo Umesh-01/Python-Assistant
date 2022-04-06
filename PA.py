@@ -72,7 +72,7 @@ def get_command():
         return query
 
 
-if __name__ == '_main_':
+if __name__ == '__main__':
     wish_user()
     while True: 
         query = get_command().lower()
