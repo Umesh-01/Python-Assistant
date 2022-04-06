@@ -26,6 +26,9 @@ from quote import quote                            # pip install quote
 import winshell as winshell                        # pip install winshell
 from geopy.geocoders import Nominatim              # pip install geopy  and pip install geocoder
 from geopy import distance
+import turtle
+import random
+import snake_game
 import record
 
 engine = pyttsx3.init()
