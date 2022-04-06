@@ -58,9 +58,15 @@ def get_command():
             print("Recognizing...")
             query = rec.recognize_google(audio, language='en-in')
             print(f"User said: {query}\n")
+        except sr.UnknownValueError:
+            print("Google Speech Recognition could not understand audio")
+            return "None"
+        except sr.RequestError as e:
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))
+            return "None"
 
         except Exception as e:
-            # print(e)
+            print(e)
             print("Say that again please...")
             return "None"
         return query
@@ -70,6 +76,7 @@ if __name__ == '_main_':
     wish_user()
     while True: 
         query = get_command().lower()
+        home_user_dir = os.path.expanduser("~")
 
         if 'wikipedia' in query:
             fun_talk('Searching Wikipedia')
@@ -104,23 +111,22 @@ if __name__ == '_main_':
             fun_talk(f"The date is {strDate}")
 
         elif 'open visual studio code' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
-                            "Programs\\Visual Studio Code\\Visual Studio Code")
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+                         "Programs\\Visual Studio Code\\Visual Studio Code")
 
         elif 'open eclipse' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
-                            "Programs\\Eclipse\\Eclipse IDE for Java Developers - 2020-06")
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+                         "Programs\\Eclipse\\Eclipse IDE for Java Developers - 2020-06")
 
         elif 'open notepad' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\"
-                            "Start Menu\\Programs\\Accessories\\Notepad")
+            os.startfile("C:\\Windows\\notepad.exe")
 
         elif 'open pycharm' in query:
             os.startfile("C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.1.1\\bin\\pycharm64.exe")
 
         elif 'open code blocks' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
-                            "Programs\\CodeBlocks\\CodeBlocks")
+            os.startfile(home_user_dir + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\"
+                         "Programs\\CodeBlocks\\CodeBlocks")
 
         elif 'open mozilla firefox' in query:
             os.startfile("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
@@ -129,9 +135,9 @@ if __name__ == '_main_':
             os.startfile("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
 
         elif 'open whatsapp' in query:
-            os.startfile("C:\\Users\\91954\\AppData\\Local\\WhatsApp\\WhatsApp.exe")
+            os.startfile(home_user_dir + "\\AppData\\Local\\WhatsApp\\WhatsApp.exe")
 
-        elif 'open vlc' in query:
+        elif 'open v l c' in query:
             os.startfile("C:\\Program Files\\VideoLAN\\VLC\\vlc.exe")
 
         elif 'who are you' in query:
@@ -235,7 +241,8 @@ if __name__ == '_main_':
         elif 'close firefox' in query:
             os.system("TASKKILL /F /IM firefox.exe")
             # subprocess.call(["taskkill", "/F", "/IM", "firefox.exe"])
-        elif "camera" in command or "take a photo" in command:
+
+        elif "camera" or "take a photo" in query:
             ec.capture(0,"robo camera","img.jpg")
 
         elif 'close visual studio code' in query:
@@ -264,6 +271,11 @@ if __name__ == '_main_':
 
         elif 'close spotify' in query:
             os.system("TASKKILL /F /IM Spotify.exe")
+
+        elif 'price of' in query:
+            query = query.replace('price of', '')
+            query = "https://www.amazon.in/s?k=" + query[-1] #indexing since I only want the keyword
+            webbrowser.open(query)
 
         elif 'poem' in query:
             fun_talk('Poem of which author you want to listen?')
@@ -403,55 +415,15 @@ if __name__ == '_main_':
 
         elif 'month' in query or 'month is going' in query:
             def tell_month():
-                localtime = time.asctime(time.localtime(time.time()))
-                m_onth = localtime[4:7]
-                if m_onth == "Jan":
-                    fun_talk("it's january")
-                if m_onth == "Feb":
-                    fun_talk("it's february")
-                if m_onth == "Mar":
-                    fun_talk("it's march")
-                if m_onth == "Apr":
-                    fun_talk("it's april")
-                if m_onth == "May":
-                    fun_talk("it's may")
-                if m_onth == "Jun":
-                    fun_talk("it's june")
-                if m_onth == "Jul":
-                    fun_talk("it's july")
-                if m_onth == "Aug":
-                    fun_talk("it's august")
-                if m_onth == "Sep":
-                    fun_talk("it's september")
-                if m_onth == "Oct":
-                    fun_talk("it's october")
-                if m_onth == "Nov":
-                    fun_talk("it's november")
-                if m_onth == "Dec":
-                    fun_talk("it's december")
-
+                month = datetime.datetime.now().strftime("%B")
+                fun_talk(month)
 
             tell_month()
 
         elif 'day' in query or 'day today' in query:
             def tell_day():
-                localtime = time.asctime(time.localtime(time.time()))
-                day = localtime[0:3]
-                if day == "Sun":
-                    fun_talk("it's sunday")
-                if day == "Mon":
-                    fun_talk("it's monday")
-                if day == "Tue":
-                    fun_talk("it's tuesday")
-                if day == "Wed":
-                    fun_talk("it's wednesday")
-                if day == "Thu":
-                    fun_talk("it's thursday")
-                if day == "Fri":
-                    fun_talk("it's friday")
-                if day == "Sat":
-                    fun_talk("it's saturday")
-
+                day = datetime.datetime.now().strftime("%A")
+                fun_talk(day)
 
             tell_day()
 
@@ -661,7 +633,7 @@ if __name__ == '_main_':
                         
         elif 'news' in query or 'news headlines' in query:
             url = "https://news.google.com/news/rss"
-            client = urlopen(url)
+            client = webbrowser(url)
             xml_page = client.read()
             client.close()
             page = bs4.BeautifulSoup(xml_page, 'xml')
@@ -677,6 +649,15 @@ if __name__ == '_main_':
 
             except Exception as e:
                 pass
+
         elif 'screen recording' in query:
-          fun_talk('press q to stop and save recording')                      ## screen recorrder functionality
+          fun_talk('Press Q to stop and save recording')                      #Screen recorder functionality
           record.screen_record()
+        
+        elif 'snake game' in query:
+            try:
+                print("Starting the game!")
+                fun_talk("Starting the game!")
+                snake_game.game()
+            except Exception as e:
+                pass
