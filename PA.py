@@ -47,83 +47,7 @@ def wish_user():
         
     fun_talk("I am P.A. (Python Assistant). Tell me how may I help you.")
 
-def capital(state):
-    if state=='Andra Pradesh':
-        fun_talk('Amaravati')
-    elif state=='Arunachal Pradesh':
-        fun_talk('Itanagar')
-    elif state=='Assam':
-        fun_talk('Dispur')
-    elif state=='Bihar':
-        fun_talk('Patna')
-    elif state=='Chhattisgarh':
-        fun_talk('Raipur')
-    elif state=='Goa':
-        fun_talk('Panaji')
-    elif state=='Gujarat':
-        fun_talk('Gandhinagar')
-    elif state=='Haryana':
-        fun_talk('Chandigarh')
-    elif state=='Himachal Pradesh':
-        fun_talk('Shimla')
-    elif state=='Jharkhand':
-        fun_talk('Ranchi')
-    elif state=='Karnataka':
-        fun_talk('Bengaluru')
-    elif state=='Kerala':
-        fun_talk('Thiruvananthapuram')
-    elif state=='Madhya Pradesh':
-        fun_talk('Bhopal')
-    elif state=='Maharashtra':
-        fun_talk('Mumbai')
-    elif state=='Manipur':
-        fun_talk('Imphal')
-    elif state=='Meghalaya':
-        fun_talk('Shillong')
-    elif state=='Mizoram':
-        fun_talk('Aizawl')
-    elif state=='Nagaland':
-        fun_talk('Kohima')
-    elif state=='Odisha':
-        fun_talk('Bhubaneswar')
-    elif state=='Punjab':
-        fun_talk('Chandigarh')
-    elif state=='Rajasthan':
-        fun_talk('Jaipur')
-    elif state=='Sikkim':
-        fun_talk('Gangtok')
-    elif state=='Tamil Nadu':
-        fun_talk('Chennai')
-    elif state=='Telangana':
-        fun_talk('Hyderabad')
-    elif state=='Tripura':
-        fun_talk('Agartala')
-    elif state=='Uttar Pradesh':
-        fun_talk('Lucknow')
-    elif state=='Uttarakhand':
-        fun_talk('Dehradun in Winter and Gairsain in Summer')
-    elif state=='West Bengal':
-        fun_talk('West Bengal')
-    elif state=='Andaman and Nicobar Islands':
-        fun_talk('Andaman and Nicobar Islands')
-    elif state=='Dadra & Nagar Haveli and Daman & Diu':
-        fun_talk('Daman')
-    elif state=='Delhi':
-        fun_talk('Delhi')
-    elif state=='Jammu and Kashmir':
-        fun_talk('Srinagar in Summer and Jammu in Winter')
-    elif state=='Lakshadweep':
-        fun_talk('Kavaratti')
-    elif state=='Puducherry':
-        fun_talk('Pondicherry')
-    elif state=='Ladakh':
-        fun_talk('Leh')
-    elif state=='India':
-        fun_talk('New Delhi')
-    else:
-        fun_talk('Please say that again...')
 
-        
 def get_command():
     rec = sr.Recognizer()
     with sr.Microphone() as source:
@@ -681,11 +605,6 @@ if __name__ == '__main__':
             joke = pyjokes.get_joke()
             print(joke)
             fun_talk(joke)
-
-        elif 'capital' in query:
-            fun_talk('Which state capital you want to know')
-            query = get_command()
-            result = capital(query)
 
         elif 'internet speed' in query:
             st = Speedtest()
