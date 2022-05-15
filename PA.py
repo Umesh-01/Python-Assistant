@@ -26,9 +26,10 @@ from quote import quote                            # pip install quote
 import winshell as winshell                        # pip install winshell
 from geopy.geocoders import Nominatim              # pip install geopy  and pip install geocoder
 from geopy import distance
-import turtle                                      # pip install turtle
-import random                                      # pip install random
-import snake_game                                  # user-defined
+import turtle
+import random
+import snake_game
+import record
 
 engine = pyttsx3.init()
 
@@ -75,7 +76,6 @@ def get_command():
 
 
 if __name__ == '__main__':
-
     wish_user()
     while True: 
         query = get_command().lower()
@@ -652,6 +652,10 @@ if __name__ == '__main__':
 
             except Exception as e:
                 pass
+
+        elif 'screen recording' in query:
+          fun_talk('Press Q to stop and save recording')                      #Screen recorder functionality
+          record.screen_record()
         
         elif 'snake game' in query:
             try:
