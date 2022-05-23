@@ -30,6 +30,8 @@ import turtle
 import random
 import snake_game
 import record
+import requests
+from PIL import Image
 
 engine = pyttsx3.init()
 
@@ -88,6 +90,17 @@ if __name__ == '__main__':
             fun_talk("According to Wikipedia")
             print(results)
             fun_talk(results)
+
+        elif ['images','image'] in query:
+            fun_talk("Please provide the desired keywords to search related Images")
+            txt=get_command()
+            fun_talk("Providing Images of"+txt)
+            response=requests.get("https://source.unsplash.com/random?{0}".format(txt))
+            file=open('sample_image.jpg','wb')
+            file.write(response.content)
+            img=Image.open(r"sample_image.jpg")
+            img.show()
+            file.close
 
         elif 'open youtube' in query:
             webbrowser.open("www.youtube.com")
