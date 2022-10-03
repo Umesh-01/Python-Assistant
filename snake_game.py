@@ -2,7 +2,6 @@ import turtle
 import random
 import time
 
-
 def game():
 
     delay=0.1
