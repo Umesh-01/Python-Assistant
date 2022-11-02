@@ -16,3 +16,5 @@ speedtest==0.0.1
 wikipedia==1.4.0
 winshell==0.6
 wolframalpha==5.0.0
+ecapture==2.0.2
+flask==2.2.2
