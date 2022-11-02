@@ -25,10 +25,9 @@ from quote import quote                            # pip install quote
 import winshell as winshell                        # pip install winshell
 from geopy.geocoders import Nominatim              # pip install geopy  and pip install geocoder
 from geopy import distance
-import turtle
 import random
-import snake_game
-import record
+import SnakeGame
+import Record
 import requests
 from PIL import Image
 
@@ -667,12 +666,12 @@ if __name__ == '__main__':
 
         elif 'screen recording' in query:
           fun_talk('Press Q to stop and save recording')                      #Screen recorder functionality
-          record.screen_record()
+          Record.screen_record()
         
         elif 'snake game' in query:
             try:
                 print("Starting the game!")
                 fun_talk("Starting the game!")
-                snake_game.game()
+                SnakeGame.game()
             except Exception as e:
                 pass
